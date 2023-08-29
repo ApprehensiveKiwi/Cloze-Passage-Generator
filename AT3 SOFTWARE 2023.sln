@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32811.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AT3 SOFTWARE", "AT3 SOFTWARE.csproj", "{828D89D6-A6B0-4F58-BF99-428E8884FB88}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClozePassage.Tests", "..\ClozePassage.Tests\ClozePassage.Tests.csproj", "{22650F20-5F86-491D-8909-45E28EA7F82B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{828D89D6-A6B0-4F58-BF99-428E8884FB88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{828D89D6-A6B0-4F58-BF99-428E8884FB88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{828D89D6-A6B0-4F58-BF99-428E8884FB88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{828D89D6-A6B0-4F58-BF99-428E8884FB88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22650F20-5F86-491D-8909-45E28EA7F82B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22650F20-5F86-491D-8909-45E28EA7F82B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22650F20-5F86-491D-8909-45E28EA7F82B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22650F20-5F86-491D-8909-45E28EA7F82B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {47D7D903-7915-40FE-9D77-42F0CF3F8B52}
+	EndGlobalSection
+EndGlobal

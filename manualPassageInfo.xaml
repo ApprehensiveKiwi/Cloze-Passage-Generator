@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="ASS_2025.manualPassageInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ASS_2025"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             MinHeight="0" MinWidth="00">
+    <Grid>
+        <materialDesign:Card>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Margin="10">
+                    <TextBlock Margin="0,0,0,10" FontWeight="Bold">Manually Creating Passage</TextBlock>
+                    <TextBlock Margin="15,0,0,0">Use &lt; to denote the start of a missing word</TextBlock>
+                    <TextBlock Margin="15,0,0,0">Use &gt;	 to denote the end of a missing word</TextBlock>
+                    <Separator Margin="10"></Separator>
+                    <Grid Margin="15,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock FontWeight="SemiBold">Example:</TextBlock>
+                        <TextBlock Margin="0,20,0,0" TextWrapping="Wrap" Grid.Column="0">The &lt;quick&gt; brown &lt;fox&gt; jumps over the lazy &lt;dog&gt;</TextBlock>
+                        <TextBlock Grid.Column="1" FontWeight="SemiBold">Returns:</TextBlock>
+
+                        <TextBlock TextWrapping="Wrap" Margin="0,20,0,0" Grid.Column="1">The _____ brown ___ jumps over the lazy ___</TextBlock>
+
+                    </Grid>
+                    <Separator Margin="10"></Separator>
+                    <Grid Margin="15,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center" FontWeight="SemiBold">Test Manual Passage Creation</TextBlock>
+                        <TextBlock Grid.Row="1" FontWeight="SemiBold">Input</TextBlock>
+                        <TextBlock Margin="0,5" Grid.Row="1" Grid.Column="1" FontWeight="SemiBold">Output</TextBlock>
+                        <TextBox Grid.Row="2" Name="inputTextbox"></TextBox>
+                        <TextBlock Margin="0,5" Grid.Row="2" Grid.Column="1" Name="outputTextbox"></TextBlock>
+                    </Grid>
+                    <Separator Margin="10"></Separator>
+                </StackPanel>
+                <Button Grid.Row="1" Margin="10,0,10,10" Background="Red" Command="materialDesign:DialogHost.CloseDialogCommand">
+                    <Grid Width="265">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <materialDesign:PackIcon Kind="ExitRun"></materialDesign:PackIcon>
+                        <TextBlock Grid.Column="1" TextAlignment="Center">Return to settings</TextBlock>
+                    </Grid>
+                </Button>
+            </Grid>
+
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

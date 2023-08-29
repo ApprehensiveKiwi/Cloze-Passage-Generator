@@ -1,0 +1,497 @@
+﻿<Window
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ASS_2025"
+             xmlns:mdxam="clr-namespace:MdXaml;assembly=MdXaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="ASS_2025.clozeSettings"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="800"
+             MinHeight="300" MinWidth="800">
+    <materialDesign:DialogHost>
+        <materialDesign:DialogHost.DialogContent>
+            <Grid>
+                <materialDesign:Card>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Margin="10">
+                            <TextBlock Margin="0,0,0,10" FontWeight="Bold">Manually Creating Passage</TextBlock>
+                            <TextBlock Margin="15,0,0,0">•  Use &lt; to denote the start of a missing word</TextBlock>
+                            <TextBlock Margin="15,0,0,0">•  Use &gt;	 to denote the end of a missing word</TextBlock>
+                            <TextBlock Margin="15,0,0,0">•  Only one word can be hidden at a time, words are seperated by spaces</TextBlock>
+                            <Separator Margin="10"></Separator>
+                            <Grid Margin="15,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200"></ColumnDefinition>
+                                    <ColumnDefinition Width="200"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock FontWeight="SemiBold">Example:</TextBlock>
+                                <TextBlock Margin="0,20,0,0" TextWrapping="Wrap" Grid.Column="0">The &lt;quick&gt; brown &lt;fox&gt; jumps over the lazy &lt;dog&gt;</TextBlock>
+                                <TextBlock Grid.Column="1" FontWeight="SemiBold">Returns:</TextBlock>
+
+                                <TextBlock TextWrapping="Wrap" Margin="0,20,0,0" Grid.Column="1">The _____ brown ___ jumps over the lazy ___</TextBlock>
+
+                            </Grid>
+                            <Separator Margin="10"></Separator>
+                            <Grid Margin="15,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center" FontWeight="SemiBold">Test Manual Passage Creation</TextBlock>
+                                <TextBlock Grid.Row="1" FontWeight="SemiBold">Input</TextBlock>
+                                <TextBlock Margin="0,5" Grid.Row="1" Grid.Column="1" FontWeight="SemiBold">Output</TextBlock>
+                                <TextBox Grid.Row="2" Name="inputTextbox" TextChanged="inputTextbox_TextChanged"></TextBox>
+                                <WrapPanel Margin="0,5" Grid.Row="2" Grid.Column="1" Name="outputWrapPanel"></WrapPanel>
+                            </Grid>
+                            <Separator Margin="10"></Separator>
+                        </StackPanel>
+                        <Button Grid.Row="1" Margin="10,0,10,10" Background="Red" Command="materialDesign:DialogHost.CloseDialogCommand">
+                            <Grid Width="265">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:PackIcon Kind="ExitRun"></materialDesign:PackIcon>
+                                <TextBlock Grid.Column="1" TextAlignment="Center">Return to settings</TextBlock>
+                            </Grid>
+                        </Button>
+                    </Grid>
+
+                </materialDesign:Card>
+            </Grid>
+
+        </materialDesign:DialogHost.DialogContent>
+        <materialDesign:Card>
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ScrollViewer>
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <materialDesign:Card Margin="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                                    <ColumnDefinition Width="33*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Button Click="Button_Click" Width="45" Height="45">
+                                    <materialDesign:PackIcon Kind="Menu"></materialDesign:PackIcon>
+                                </Button>
+                                
+                                <TextBlock FontWeight="Bold" Grid.Column="1" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center">Program Help</TextBlock>
+                                <materialDesign:Card  Name="helpContainer" Grid.Row="1" Margin="5" Grid.ColumnSpan="2" MaxHeight="400" Visibility="Collapsed">
+                                        <FlowDocument >
+                                            <Paragraph>
+                                                <Run>Welcome to the Crabby Clozers Help Page! Below is a basic walkthrough of how to 
+                                            use the program to import, create, edit and use cloze passages.
+                                                </Run>
+                                            </Paragraph>
+                                            <Paragraph>
+                                                <Run FontSize="13" FontWeight="Bold">
+                                                    1: Importing text for cloze passages.
+                                                </Run>
+                                            </Paragraph>
+                                            <Paragraph>
+                                                There are two ways to import the text for use in cloze passages:
+                                            </Paragraph>
+                                            <List>
+                                                <ListItem>
+                                                    <Paragraph>
+                                                        Importing them via textfile by pressing the
+                                                        <Bold>"Load passage from local file"</Bold> button
+                                                        <materialDesign:PackIcon Kind="Upload"></materialDesign:PackIcon>
+                                                    </Paragraph>
+                                                </ListItem>
+                                                <ListItem>
+                                                    <Paragraph>
+                                                        Typing them out manually by writing the cloze passage into the textbox below labelled
+                                                        <Bold>"Cloze passage input text"</Bold> .
+                                                    </Paragraph>
+                                                </ListItem>
+                                            </List>
+
+                                            <Paragraph>
+                                                <Run FontSize="13" FontWeight="Bold">
+                                                    2: Manipulating cloze passages.
+                                                </Run>
+                                            </Paragraph>
+                                            <Paragraph>
+                                                There are 3 methods to generate the missing words in the cloze passage, they are:
+                                            </Paragraph>
+                                            <List>
+                                                <ListItem>
+                                                    <Paragraph>
+                                                        <Bold>Auto generation</Bold> , this method will hide every Nth word entered. The interval at 
+                                                    which this is done is determined by the slider labeled
+                                                        <Bold>
+                                                            Missing Word Interval
+                                                        </Bold>
+
+                                                    </Paragraph>
+                                                </ListItem>
+                                                <ListItem>
+                                                    <Paragraph>
+                                                        <Bold>Manual generation</Bold> , this method allows you to determine which words are hidden
+                                                    and which words are visible. This is done by surrounding words to be hidden with &lt; and &gt;.
+                                                    If you dont understand this completely you can press the
+                                                        <materialDesign:PackIcon Kind="Help">
+
+                                                        </materialDesign:PackIcon>
+                                                        button which features a more detailed explanation which includes an example. It also allows features
+                                                    an interactive editor that allows you to preview your text.
+
+                                                    </Paragraph>
+                                                </ListItem>
+                                                <ListItem>
+                                                    <Paragraph>
+                                                        <Bold>Random Generation</Bold> , this method will randomly remove words
+                                                    the chance for each word to be hidden is determined by the slider labelled
+                                                        <Bold>"Chance for word to be hidden"</Bold>
+                                                    </Paragraph>
+                                                </ListItem>
+                                            </List>
+                                            <Paragraph>
+                                                To preview what the cloze passage will look at you can press the
+                                                <Bold>preview generation</Bold> button located at the bottom of the page. This will also
+                                                update the word bank located on the right side of the page. You can also learn how to use the student view
+                                                after pressing the button since it allows you to fill the missing blanks.
+                                     
+                                            </Paragraph>
+                                            <Paragraph>
+                                                The
+                                                <Bold>Use alternate character for missing words</Bold> listbox allows you to change how
+                                                the passage will look when printed.
+                                            </Paragraph>
+                                            <Paragraph>
+                                                <Run FontSize="13" FontWeight="Bold">
+                                                    3: How to print.
+                                                </Run>
+                                            </Paragraph>
+                                            <Paragraph>
+                                                    This program supports the ability to print generated cloze passages. It does this
+                                                    by generating a
+                                                <Bold>Word document</Bold>.
+                                                To print a cloze passage you must first save the cloze passage locally.
+                                                This is done by pressing the
+                                                <Bold>Save locally as .docx</Bold> button. "
+                                                <materialDesign:PackIcon Kind="Download"></materialDesign:PackIcon>"
+                                                Generating the file may take a few seconds, a popup will be displayed when its finished generating.
+                                                The document can then be viewed and printed by  opening the file in
+                                                <Bold>Microsoft Word</Bold>. The file can be printed inside Crabby Clozers by pressing the
+                                                <Bold>Send to printer</Bold> button "
+                                                <materialDesign:PackIcon Kind="Printer"></materialDesign:PackIcon>".
+                                            </Paragraph>
+                                            <Paragraph>
+                                                <Run FontSize="13" FontWeight="Bold">
+                                                    4: Completing cloze passage digitally.
+                                                </Run>
+                                            </Paragraph>
+                                            <Paragraph>
+                                                Once you have created your cloze passage and adjusted your settings you can press the
+                                                <Bold>Start Cloze Passage in student view</Bold> button to launch the student view.
+                                            <Bold>The only way to enter words is to type them into the blanks</Bold>
+                                                
+                                            </Paragraph>
+                                        </FlowDocument>
+                                </materialDesign:Card>
+                            </Grid>
+
+                        </materialDesign:Card>
+                        <materialDesign:Card Grid.Row="1"  Margin="10">
+                                <Grid Margin="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"></RowDefinition>
+                                        <RowDefinition Height="auto"></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition Height="auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel>
+                                        <TextBlock Margin="0,0,0,10" FontWeight="Bold">Cloze Passage Settings</TextBlock>
+                                        <TextBlock Grid.Row="1" Margin="5,0,5,15" FontWeight="Light">Sets the text for the cloze passage and generation method.</TextBlock>
+
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1">
+                                        <Grid Tag="loadGroup">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0">Load passage from local file</TextBlock>
+                                            <Separator Grid.Column="2" Margin="10,0,10,0"></Separator>
+                                            <Button Click="openPassageButton_Click" HorizontalAlignment="Right" Grid.Column="3"  Height="auto" Margin="5,2,5,2" Width="50">
+                                                <materialDesign:PackIcon Tag="loadGroup" Kind="Upload"></materialDesign:PackIcon>
+                                            </Button>
+                                        </Grid>
+                                        <Separator Margin="15"></Separator>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <RadioButton IsChecked="True" Name="autoGenRadio" GroupName="passageGenerationRadio"/>
+                                            <TextBlock Tag="autoGenGroup" Grid.Column="1" Margin="5,0,0,0">Auto-Generate Missing Words</TextBlock>
+                                        </Grid>
+                                        <Grid Margin="15,5,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition Width="auto "></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Tag="autoGenGroup" Grid.Column="0" Margin="5,0,0,0">Missing Word Interval</TextBlock>
+                                            <Slider Tag="autoGenGroup" Name="missingWordIntervalSlider" ValueChanged="missingWordIntervalSlider_Changed" Grid.Column="1" Margin="10,0" Value="6" Minimum="1" Maximum="10"></Slider>
+                                            <TextBlock Tag="autoGenGroup" Name="wordIntervalDisplayText" Grid.Column="2">6</TextBlock>
+                                        </Grid>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <RadioButton Name="manualGenerationRadioButton" GroupName="passageGenerationRadio"/>
+                                            <TextBlock Tag="manualGenGroup" Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0">Manually Generate Missing Words</TextBlock>
+                                            <Separator Tag="manualGenGroup" Grid.Column="2" Margin="10,0,10,0"></Separator>
+                                            <Button Tag="manualGenGroup" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" HorizontalAlignment="Right" Grid.Column="3"  Height="auto" Margin="5,2,5,2" Width="50">
+                                                <materialDesign:PackIcon  Kind="QuestionMark"></materialDesign:PackIcon>
+                                            </Button>
+                                        </Grid>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <RadioButton Name="randomGenerationRadioButton" GroupName="passageGenerationRadio"/>
+                                            <TextBlock Tag="randomGenGroup" Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0">Randomly Generate Missing Words</TextBlock>
+
+                                        </Grid>
+                                        <Grid Margin="15,5,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock>Chance for word to be hidden</TextBlock>
+                                            <Slider  Tag="randomGenGroup" Minimum="0" Maximum="100" ValueChanged="randomOffsetSlider_ValueChanged" Name="randomOffsetSlider" Grid.Column="1" Margin="10,0,10,0"></Slider>
+                                            <TextBlock Tag="randomGenGroup" Margin="5,0,0,0"  Name="randomIntervalDisplayText" Grid.Column="2" Height="20" VerticalAlignment="Top"> 0%</TextBlock>
+                                        </Grid>
+
+                                        <Grid Margin="0,10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <CheckBox x:Name="alternateCharacterCheckbox"/>
+                                            <TextBlock Grid.Column="1" Margin="5,0,0,0">Use alternate character for missing words</TextBlock>
+                                            <ComboBox  Grid.Column="2" Margin="5,0,0,0" Name="alternateCharacterCombobox">
+                                                <ComboBoxItem Tag="_">Underscore (_)</ComboBoxItem>
+                                                <ComboBoxItem Tag=".">Point (.)</ComboBoxItem>
+                                                <ComboBoxItem Tag="-">Dash (-)</ComboBoxItem>
+                                                <ComboBoxItem Tag="/">Forward Slash (/)</ComboBoxItem>
+                                                <ComboBoxItem Tag="\">Backslash  (\)</ComboBoxItem>
+                                            </ComboBox>
+                                        </Grid>
+                                    </StackPanel>
+                                    <Grid Grid.Row="2">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock FontWeight="Light">Cloze passage input text</TextBlock>
+
+
+                                        <TextBox MinHeight="150" Name="generationInputTextbox" Grid.Row="0" TextWrapping="Wrap" AcceptsReturn="True" Width="auto" Margin="15"></TextBox>
+                                        <TextBlock MinHeight="150" Grid.Row="1" FontWeight="Light">Cloze passage output preview (digital)</TextBlock>
+
+                                        <WrapPanel Name="generationPreviewTextbox" Grid.Row="1" Width="auto" Margin="15"></WrapPanel>
+
+                                    </Grid>
+
+                                    <Button Click="previewGenerateButton_Click" Grid.Row="3" Name="previewGenerateButton">Preview Generation</Button>
+                                </Grid>
+                        </materialDesign:Card>
+                    </Grid>
+                </ScrollViewer>
+                <ScrollViewer Grid.Column="1">
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <materialDesign:Card Grid.Row="1" Margin="10">
+                            <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Margin="0,0,0,10" FontWeight="Bold">Word-Bank Settings</TextBlock>
+
+                                <TextBlock TextWrapping="WrapWithOverflow" Grid.Row="1" Margin="5,0,5,15" FontWeight="Light">Sets the sort method to be used for both digital and hard-copy versions of the wordbank.</TextBlock>
+                                <StackPanel Grid.Row="2">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock>Sorting Method</TextBlock>
+                                        <ComboBox IsEnabled="true" SelectedIndex="0" Name="sortMethodComboBox" Grid.Column="1" Margin="15,0,0,0" SelectionChanged="sortMethodComboBox_SelectionChanged">
+                                            <ComboBoxItem>Chronological (No sort)</ComboBoxItem>
+                                            <ComboBoxItem>Alphabetical (A -> Z) (EXPERIMENTAL)</ComboBoxItem>
+                                            <ComboBoxItem>Reverse Alphabetical (Z -> A) (EXPERIMENTAL)</ComboBoxItem>
+                                            <ComboBoxItem>Pseudorandom</ComboBoxItem>
+                                            <ComboBoxItem>Word Length (High -> Low)</ComboBoxItem>
+                                            <ComboBoxItem>Word Length (Low -> High)</ComboBoxItem>
+                                        </ComboBox>
+                                    </Grid>
+                                    <ScrollViewer>
+                                        <WrapPanel Name="wordBankPreview" MinHeight="100" Margin="10"></WrapPanel>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </Grid>
+                        </materialDesign:Card>
+                        <materialDesign:Card Grid.Row="2" Margin="10">
+                            <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Margin="0,0,0,10" FontWeight="Bold">Time Settings</TextBlock>
+                                <TextBlock Grid.Row="1" Margin="5,0,5,15" FontWeight="Light">Sets the time allowed for students to complete the cloze passage.</TextBlock>
+                                <StackPanel Grid.Row="2">
+                                    <Grid Margin="5,2,5,2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <RadioButton Name="unlimitedTimeAllowedRadio" GroupName="timeSettingsRadio"></RadioButton>
+                                        <TextBlock Grid.Column="1" Margin="5,0,0,0"> Unlimited Time Allowed</TextBlock>
+                                    </Grid>
+                                    <Grid Margin="5,2,5,2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <RadioButton GroupName="timeSettingsRadio"></RadioButton>
+                                        <TextBlock Grid.Column="1" Margin="5,2,5,2"> Limited Time Allowed</TextBlock>
+                                        <ComboBox Name="timeSelectionComboBox" Grid.Column="3" SelectedIndex="5">
+                                            <ComboBoxItem>1 Minute</ComboBoxItem>
+                                            <ComboBoxItem>5 Minutes</ComboBoxItem>
+                                            <ComboBoxItem>10 Minutes</ComboBoxItem>
+                                            <ComboBoxItem>15 Minutes</ComboBoxItem>
+                                            <ComboBoxItem>20 Minutes</ComboBoxItem>
+                                            <ComboBoxItem>30 Minutes</ComboBoxItem>
+                                            <ComboBoxItem>60 Minutes</ComboBoxItem>
+                                        </ComboBox>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </materialDesign:Card>
+                        <materialDesign:Card Grid.Row="3" Margin="10">
+                            <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Margin="0,0,0,10" FontWeight="Bold">Username Settings</TextBlock>
+                                <TextBlock TextWrapping="WrapWithOverflow" Grid.Row="1" Margin="5,0,5,15" FontWeight="Light">The name to be used for hard-copies of the cloze passage, leave blank to allow students to write their own names.</TextBlock>
+
+                                <StackPanel Grid.Row="2">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock>Username:</TextBlock>
+                                        <TextBox Name="userNameInputTextbox" Grid.Column="1" Margin="5,0,0,0"></TextBox>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </materialDesign:Card>
+                        <materialDesign:Card Grid.Row="4" Margin="10">
+                            <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Margin="0,0,0,10" FontWeight="Bold">Print Settings</TextBlock>
+                                <TextBlock TextWrapping="WrapWithOverflow" Grid.Row="1" Margin="5,0,5,15" FontWeight="Light">Saves/prints the wordbank created on the left to a local .docx file.</TextBlock>
+
+                                <StackPanel Grid.Row="2">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="1" Margin="5,0,0,0" VerticalAlignment="Center">Save locally as .docx</TextBlock>
+                                        <Separator Grid.Column="2" Margin="10,0,10,0"></Separator>
+                                        <Button Name="saveClozeButton" HorizontalAlignment="Right" Grid.Column="3" Height="auto" Margin="5,2,5,2" Width="50" Click="saveClozeButton_Click">
+                                            <materialDesign:PackIcon Kind="Download"></materialDesign:PackIcon>
+                                        </Button>
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="1" Margin="5,0,0,0" VerticalAlignment="Center">Send to printer</TextBlock>
+                                        <Separator Grid.Column="2" Margin="10,0,10,0"></Separator>
+                                        <Button HorizontalAlignment="Right" Name="printButton" Grid.Column="3" Height="auto" Margin="5,2,5,2" Width="50" Click="printButton_Click">
+                                            <materialDesign:PackIcon Kind="Printer"></materialDesign:PackIcon>
+                                        </Button>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </materialDesign:Card>
+                        <materialDesign:Card Grid.Row="5" Margin="10">
+                            <Button Margin="10" Click="createStudentViewButton_Click" Content="Start Cloze Passage in student view"></Button>
+                        </materialDesign:Card>
+                    </Grid>
+                </ScrollViewer>
+                <materialDesign:PopupBox Content="PopupBox" Margin="-10,-21,0,0" VerticalAlignment="Top"/>
+            </Grid>
+        </materialDesign:Card>
+    </materialDesign:DialogHost>
+</Window>
